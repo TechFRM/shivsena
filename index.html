@@ -66,10 +66,12 @@ body { position: relative; }
 }
 
 .load-symbol {
-  width: 64px;
-  height: 64px;
+  width: 140px;
+  height: auto;
   margin-bottom: 28px;
   opacity: 0;
+  /* Recolor black silhouette → warm saffron with glow */
+  filter: brightness(0) saturate(100%) invert(64%) sepia(72%) saturate(2451%) hue-rotate(353deg) brightness(101%) contrast(103%) drop-shadow(0 0 12px rgba(255, 111, 0, 0.55));
   animation: loadSymbolIn 1s var(--ease-elite) 0.1s forwards;
 }
 
@@ -2815,12 +2817,7 @@ body { position: relative; }
 
 <!-- ─────── LOADING SCREEN ─────── -->
 <div id="load-screen">
-  <svg class="load-symbol" viewBox="0 0 100 100" fill="none">
-    <path d="M20 50 Q 50 20 80 50" stroke="#FF6F00" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-    <path d="M20 50 Q 50 80 80 50" stroke="#FF6F00" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-    <line x1="15" y1="50" x2="85" y2="50" stroke="#FFB347" stroke-width="2"/>
-    <polygon points="85,50 78,46 78,54" fill="#FFB347"/>
-  </svg>
+  <img class="load-symbol" src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Indian_Election_Symbol_Bow_And_Arrow2.svg" alt="Shiv Sena Bow and Arrow" />
   <div class="load-brand" data-i18n="loadBrand">शिव सेना · SHIV SENA</div>
   <div class="load-slogan" data-i18n="loadSlogan">गर्वाने सांगा आम्ही हिंदू आहोत</div>
   <div class="load-subslogan" data-i18n="loadSubslogan">जनतेची चळवळ · १९६६ पासून</div>
