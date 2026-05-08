@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Political Portal — Members (Prototype)</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Work+Sans:wght@500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .hard-shadow {
+            box-shadow: 4px 4px 0px 0px #000000;
+        }
+        .brand-shadow {
+            box-shadow: 4px 4px 0px 0px #d9591d;
+        }
+        .x-placeholder {
+            position: relative;
+            background: #F5F5F5;
+        }
+        .x-placeholder::before, .x-placeholder::after {
+            content: "";
+            position: absolute;
+            top: 0; bottom: 0; left: 0; right: 0;
+            border: 0.5px solid #A3A3A3;
+        }
+        .x-placeholder::before {
+            background: linear-gradient(to top right, transparent calc(50% - 1px), #A3A3A3, transparent calc(50% + 1px));
+        }
+        .x-placeholder::after {
+            background: linear-gradient(to bottom right, transparent calc(50% - 1px), #A3A3A3, transparent calc(50% + 1px));
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "primary": "#000000",
+                      "brand-primary": "#d9591d",
+                      "error": "#ba1a1a",
+                      "on-primary-fixed-variant": "#474747",
+                      "on-secondary-fixed-variant": "#464747",
+                      "outline": "#7e7576",
+                      "primary-container": "#1b1b1b",
+                      "secondary-container": "#e3e2e2",
+                      "tertiary-fixed": "#e2e2e2",
+                      "surface-container": "#eeeeee",
+                      "inverse-primary": "#c6c6c6",
+                      "surface-container-lowest": "#ffffff",
+                      "inverse-surface": "#2f3131",
+                      "on-error": "#ffffff",
+                      "on-tertiary-container": "#848484",
+                      "tertiary": "#000000",
+                      "surface-bright": "#f9f9f9",
+                      "on-secondary-container": "#646464",
+                      "surface-container-high": "#e8e8e8",
+                      "surface-variant": "#e2e2e2",
+                      "on-primary-container": "#848484",
+                      "on-primary-fixed": "#1b1b1b",
+                      "surface-container-low": "#f3f3f3",
+                      "secondary-fixed": "#e3e2e2",
+                      "on-secondary": "#ffffff",
+                      "surface-dim": "#dadada",
+                      "secondary-fixed-dim": "#c7c6c6",
+                      "tertiary-container": "#1b1b1b",
+                      "surface-container-highest": "#e2e2e2",
+                      "on-error-container": "#93000a",
+                      "on-surface-variant": "#4c4546",
+                      "tertiary-fixed-dim": "#c6c6c6",
+                      "on-tertiary-fixed-variant": "#474747",
+                      "secondary": "#5e5e5e",
+                      "surface-tint": "#5e5e5e",
+                      "error-container": "#ffdad6",
+                      "primary-fixed-dim": "#c6c6c6",
+                      "on-tertiary": "#ffffff",
+                      "background": "#f9f9f9",
+                      "on-background": "#1a1c1c",
+                      "primary-fixed": "#e2e2e2",
+                      "on-secondary-fixed": "#1b1c1c",
+                      "on-primary": "#ffffff",
+                      "surface": "#f9f9f9",
+                      "on-tertiary-fixed": "#1b1b1b",
+                      "on-surface": "#1a1c1c",
+                      "outline-variant": "#cfc4c5",
+                      "inverse-on-surface": "#f1f1f1"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "unit": "8px",
+                      "lg": "24px",
+                      "gutter": "24px",
+                      "md": "16px",
+                      "margin": "32px",
+                      "sm": "8px",
+                      "xs": "4px",
+                      "xl": "48px"
+              },
+              "fontFamily": {
+                      "body-md": ["Inter"],
+                      "headline-lg": ["Work Sans"],
+                      "label-sm": ["Inter"],
+                      "body-lg": ["Inter"],
+                      "headline-md": ["Work Sans"],
+                      "headline-xl": ["Work Sans"],
+                      "marathi-body": ["Inter"]
+              },
+              "fontSize": {
+                      "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                      "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                      "label-sm": ["14px", {"lineHeight": "1.4", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                      "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                      "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "500"}],
+                      "headline-xl": ["40px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                      "marathi-body": ["16px", {"lineHeight": "1.8", "fontWeight": "400"}]
+              }
+            },
+          },
+        }
+      </script>
+</head>
+<body class="bg-background text-on-surface font-body-md">
+<!-- TopNavBar -->
+<nav class="bg-surface-container-lowest border-b border-outline flex justify-between items-center w-full px-margin py-md z-50 sticky top-0">
+<div class="font-headline-md text-headline-md font-bold text-primary">Organization Platform</div>
+<div class="hidden md:flex gap-lg">
+<a class="text-secondary font-body-md text-body-md hover:text-brand-primary transition-colors cursor-pointer active:opacity-80" href="home.html">Home</a>
+<a class="text-secondary font-body-md text-body-md hover:text-brand-primary transition-colors cursor-pointer active:opacity-80" href="about.html">About</a>
+<a class="text-secondary font-body-md text-body-md hover:text-brand-primary transition-colors cursor-pointer active:opacity-80" href="news.html">News</a>
+<a class="text-secondary font-body-md text-body-md hover:text-brand-primary transition-colors cursor-pointer active:opacity-80" href="leadership.html">Leadership</a>
+<a class="text-secondary font-body-md text-body-md hover:text-brand-primary transition-colors cursor-pointer active:opacity-80" href="members.html">Members</a>
+</div>
+<div class="flex items-center gap-md">
+<div class="flex gap-sm">
+<span class="material-symbols-outlined p-xs cursor-pointer text-primary">dark_mode</span>
+<span class="material-symbols-outlined p-xs cursor-pointer text-primary">translate</span>
+<span class="material-symbols-outlined p-xs cursor-pointer md:hidden text-primary">menu</span>
+</div>
+<button class="border-2 border-primary px-md py-sm font-bold cursor-pointer active:opacity-80 hover:bg-primary hover:text-white transition-all" onclick="window.location.href='get-involved.html';return false;" style="cursor:pointer">Join Now</button>
+</div>
+</nav>
+<main class="max-w-[1440px] mx-auto px-margin py-xl grid grid-cols-12 gap-gutter">
+<!-- Header Section -->
+<header class="col-span-12 mb-xl">
+<h1 class="font-headline-xl text-headline-xl mb-sm">Constituency Connect / मतदारसंघ संपर्क</h1>
+<p class="text-on-surface-variant font-body-lg text-body-lg max-w-2xl">Find your representatives and local party offices. Access direct lines of communication to your local leadership.</p>
+</header>
+<!-- Bento Grid Layout -->
+<!-- Interactive Map Zone -->
+<section class="col-span-12 lg:col-span-8 border border-outline p-md bg-surface-container-low min-h-[500px] flex flex-col">
+<div class="flex justify-between items-center mb-md">
+<h2 class="font-headline-md text-headline-md">Interactive Map / परस्पर नकाशा</h2>
+<div class="flex items-center gap-sm bg-brand-primary text-white px-md py-xs rounded-full">
+<span class="material-symbols-outlined text-[18px]">location_on</span>
+<span class="font-label-sm text-label-sm">Near You: Mumbai South</span>
+</div>
+</div>
+<div class="x-placeholder flex-grow flex items-center justify-center border border-outline border-dashed">
+<div class="text-center z-10 bg-white/90 p-lg border-2 border-brand-primary brand-shadow">
+<span class="material-symbols-outlined text-xl mb-sm block text-brand-primary">map</span>
+<p class="font-bold">MAP PLACEHOLDER</p>
+<div class="flex justify-center gap-2 mt-2">
+<span class="material-symbols-outlined text-brand-primary text-2xl" style="font-variation-settings: 'FILL' 1;">location_on</span>
+<span class="material-symbols-outlined text-brand-primary text-2xl" style="font-variation-settings: 'FILL' 1;">location_on</span>
+</div>
+<p class="text-label-sm mt-2">16:9 Aspect Ratio / १६:९ गुणोत्तर</p>
+<p class="mt-md text-secondary italic">Simulated data for: <span data-location="Mumbai, India">Mumbai</span></p>
+</div>
+</div>
+</section>
+<!-- Sidebar Section -->
+<section class="col-span-12 lg:col-span-4 flex flex-col gap-gutter">
+<!-- Find MLA/MP Form -->
+<div class="border border-primary p-lg bg-surface-container-lowest hard-shadow">
+<h3 class="font-headline-md text-headline-md mb-md">Find Representative / प्रतिनिधी शोधा</h3>
+<div class="space-y-md">
+<div>
+<label class="font-label-sm text-label-sm block mb-xs">Pincode / पिनकोड</label>
+<input class="w-full border border-outline p-sm focus:ring-0 focus:border-brand-primary" placeholder="e.g. 400001" type="text"/>
+</div>
+<div>
+<label class="font-label-sm text-label-sm block mb-xs">Constituency / मतदारसंघ</label>
+<select class="w-full border border-outline p-sm focus:ring-0 focus:border-brand-primary">
+<option>Select / निवडा</option>
+<option>Mumbai South</option>
+<option>Pune Central</option>
+<option>Nagpur North</option>
+</select>
+</div>
+<button class="w-full border-2 border-brand-primary bg-brand-primary text-white py-md font-bold hover:bg-opacity-90 transition-colors">Search Representatives / प्रतिनिधी शोधा</button>
+</div>
+</div>
+<!-- Support Our Cause (Donation Quick Select) -->
+<!-- Office Locator -->
+<div class="border border-outline p-lg bg-white">
+<h3 class="font-headline-md text-headline-md mb-md">Office Locator / कार्यालय शोधक</h3>
+<div class="space-y-md">
+<div class="flex items-center gap-md border-b border-surface-variant pb-md">
+<span class="material-symbols-outlined text-brand-primary" data-weight="fill">location_city</span>
+<div>
+<p class="font-bold">Main Headquarters / मुख्य मुख्यालय</p>
+<p class="text-label-sm text-on-surface-variant">Nariman Point, Mumbai</p>
+</div>
+</div>
+<div class="flex items-center gap-md border-b border-surface-variant pb-md">
+<span class="material-symbols-outlined text-brand-primary">store</span>
+<div>
+<p class="font-bold">District Office / जिल्हा कार्यालय</p>
+<p class="text-label-sm text-on-surface-variant">Dadar West, Mumbai</p>
+</div>
+</div>
+<button class="text-brand-primary font-bold underline hover:no-underline" onclick="window.location.href='news.html';return false;" style="cursor:pointer">View All Locations / सर्व स्थाने पहा</button>
+</div>
+</div>
+</section>
+<!-- Contact Form Section -->
+<section class="col-span-12 grid grid-cols-1 md:grid-cols-2 border border-outline bg-surface-container-lowest mt-lg">
+<div class="p-xl border-b md:border-b-0 md:border-r border-outline">
+<h2 class="font-headline-lg text-headline-lg mb-md">Direct Contact / थेट संपर्क</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mb-lg">Have a specific issue in your ward? Reach out to our grievance cell directly. Our team ensures all queries are directed to the respective MLA offices.</p>
+<div class="space-y-lg">
+<div class="flex items-start gap-md">
+<span class="material-symbols-outlined bg-secondary-container p-sm text-brand-primary">call</span>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Helpline / हेल्पलाईन</span>
+<span class="font-body-lg text-body-lg font-bold">1800-123-4567</span>
+</div>
+</div>
+<div class="flex items-start gap-md">
+<span class="material-symbols-outlined bg-secondary-container p-sm text-brand-primary">mail</span>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Email / ईमेल</span>
+<span class="font-body-lg text-body-lg font-bold">connect@organization.in</span>
+</div>
+</div>
+</div>
+</div>
+<div class="p-xl">
+<form class="space-y-md">
+<div class="grid grid-cols-2 gap-md">
+<div>
+<label class="font-label-sm text-label-sm block mb-xs">Full Name / पूर्ण नाव</label>
+<input class="w-full border border-outline p-sm focus:border-brand-primary focus:ring-0" type="text"/>
+</div>
+<div>
+<label class="font-label-sm text-label-sm block mb-xs">Mobile / मोबाईल</label>
+<input class="w-full border border-outline p-sm focus:border-brand-primary focus:ring-0" type="tel"/>
+</div>
+</div>
+<div>
+<label class="font-label-sm text-label-sm block mb-xs">Issue Category / समस्येचा प्रकार</label>
+<select class="w-full border border-outline p-sm focus:border-brand-primary focus:ring-0">
+<option>Infrastructure / पायाभूत सुविधा</option>
+<option>Education / शिक्षण</option>
+<option>Healthcare / आरोग्य</option>
+<option>Other / इतर</option>
+</select>
+</div>
+<div>
+<label class="font-label-sm text-label-sm block mb-xs">Message / संदेश</label>
+<textarea class="w-full border border-outline p-sm focus:border-brand-primary focus:ring-0" rows="4"></textarea>
+</div>
+<button class="border-2 border-brand-primary bg-brand-primary text-white px-xl py-md font-bold uppercase tracking-wider hover:bg-opacity-90 transition-all shadow-lg" type="submit">Submit Query / तक्रार नोंदवा</button>
+</form>
+</div>
+</section>
+<!-- Representative Cards (Quick View) -->
+<section class="col-span-12 mt-xl">
+<div class="flex items-center justify-between mb-lg border-b-2 border-primary pb-sm">
+<h3 class="font-headline-md text-headline-md">Your Representatives / तुमचे प्रतिनिधी</h3>
+<span class="font-label-sm bg-surface-container-highest px-md py-xs">3 Detected / ३ आढळले</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<!-- Card 1 -->
+<div class="border border-outline bg-white flex flex-col hover:border-brand-primary transition-colors group">
+<div class="x-placeholder h-48 w-full border-b border-outline"></div>
+<div class="p-md">
+<p class="font-label-sm text-secondary uppercase">Member of Parliament (MP)</p>
+<h4 class="font-headline-md text-headline-md mb-xs">Name Placeholder</h4>
+<p class="text-label-sm text-on-surface-variant border-l-2 border-brand-primary pl-sm mb-md">Mumbai South Constituency</p>
+<button class="w-full border border-outline py-sm font-bold text-label-sm hover:bg-brand-primary hover:text-white hover:border-brand-primary transition-all">Profile / प्रोफाइल</button>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="border border-outline bg-white flex flex-col hover:border-brand-primary transition-colors group">
+<div class="x-placeholder h-48 w-full border-b border-outline"></div>
+<div class="p-md">
+<p class="font-label-sm text-secondary uppercase">Member of Assembly (MLA)</p>
+<h4 class="font-headline-md text-headline-md mb-xs">Name Placeholder</h4>
+<p class="text-label-sm text-on-surface-variant border-l-2 border-brand-primary pl-sm mb-md">Colaba Assembly</p>
+<button class="w-full border border-outline py-sm font-bold text-label-sm hover:bg-brand-primary hover:text-white hover:border-brand-primary transition-all">Profile / प्रोफाइल</button>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="border border-outline bg-white flex flex-col hover:border-brand-primary transition-colors group">
+<div class="x-placeholder h-48 w-full border-b border-outline"></div>
+<div class="p-md">
+<p class="font-label-sm text-secondary uppercase">Corporator / नगरसेवक</p>
+<h4 class="font-headline-md text-headline-md mb-xs">Name Placeholder</h4>
+<p class="text-label-sm text-on-surface-variant border-l-2 border-brand-primary pl-sm mb-md">Ward No. 224</p>
+<button class="w-full border border-outline py-sm font-bold text-label-sm hover:bg-brand-primary hover:text-white hover:border-brand-primary transition-all">Profile / प्रोफाइल</button>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-highest border-t-2 border-brand-primary w-full mt-xl">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-lg px-margin py-xl max-w-[1440px] mx-auto">
+<div>
+<div class="font-headline-sm text-headline-sm font-black text-primary mb-md">Political Organization</div>
+<p class="text-on-surface-variant font-label-sm text-label-sm">© 2024 Political Organization. All rights reserved.</p>
+</div>
+<div class="flex flex-col gap-sm">
+<h5 class="font-bold uppercase text-label-sm mb-xs">Quick Links</h5>
+<a class="text-on-surface-variant font-label-sm text-label-sm hover:text-brand-primary transition-colors cursor-pointer" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant font-label-sm text-label-sm hover:text-brand-primary transition-colors cursor-pointer" href="#">Terms of Service</a>
+<a class="text-on-surface-variant font-label-sm text-label-sm hover:text-brand-primary transition-colors cursor-pointer" href="get-involved.html">Volunteer</a>
+</div>
+<div class="flex flex-col gap-sm">
+<h5 class="font-bold uppercase text-label-sm mb-xs">Contact</h5>
+<a class="text-on-surface-variant font-label-sm text-label-sm hover:text-brand-primary transition-colors cursor-pointer" href="get-involved.html">Donate</a>
+<a class="text-on-surface-variant font-label-sm text-label-sm hover:text-brand-primary transition-colors cursor-pointer" href="members.html">Contact</a>
+<div class="flex gap-md mt-md">
+<span class="material-symbols-outlined hover:text-brand-primary cursor-pointer transition-colors">share</span>
+<span class="material-symbols-outlined hover:text-brand-primary cursor-pointer transition-colors">campaign</span>
+</div>
+</div>
+</div>
+</footer>
+
+<!-- =========================================================
+     PROTOTYPE NAVIGATOR — for client review only
+     Hide via ?nav=off  •  Toggle via the FAB at bottom-right
+     ========================================================= -->
+<style id="proto-nav-style">
+  #proto-nav-fab,
+  #proto-nav-panel { font-family: 'Inter', system-ui, sans-serif; }
+
+  #proto-nav-fab {
+    position: fixed; bottom: 24px; right: 24px; z-index: 99998;
+    width: 56px; height: 56px;
+    background: #d9591d; color: #fff;
+    border: 2px solid #000; border-radius: 0;
+    box-shadow: 4px 4px 0 0 #000;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; font-size: 22px; font-weight: 700;
+    transition: transform .12s ease, box-shadow .12s ease;
+  }
+  #proto-nav-fab:hover { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 0 #000; }
+  #proto-nav-fab:active { transform: translate(2px,2px); box-shadow: none; }
+
+  #proto-nav-panel {
+    position: fixed; bottom: 96px; right: 24px; z-index: 99999;
+    width: 320px; max-height: 80vh; overflow: auto;
+    background: #ffffff;
+    border: 2px solid #000; box-shadow: 6px 6px 0 0 #d9591d;
+    padding: 18px 18px 14px;
+    display: none;
+  }
+  #proto-nav-panel.open { display: block; }
+
+  #proto-nav-panel header {
+    display: flex; justify-content: space-between; align-items: baseline;
+    border-bottom: 1px dashed #7e7576; padding-bottom: 10px; margin-bottom: 14px;
+  }
+  #proto-nav-panel h4 {
+    margin: 0; font-family: 'Work Sans', sans-serif;
+    font-size: 14px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase;
+    color: #1a1c1c;
+  }
+  #proto-nav-panel .pn-badge {
+    font-size: 10px; font-weight: 600; letter-spacing: .08em;
+    background: #1a1c1c; color: #fff; padding: 2px 6px;
+  }
+
+  #proto-nav-panel .pn-section {
+    font-size: 10px; letter-spacing: .12em; text-transform: uppercase;
+    color: #7e7576; margin: 14px 0 6px;
+  }
+  #proto-nav-panel ul { list-style: none; margin: 0; padding: 0; }
+  #proto-nav-panel li { margin: 0; }
+  #proto-nav-panel a.pn-link {
+    display: flex; align-items: center; justify-content: space-between;
+    text-decoration: none; color: #1a1c1c;
+    padding: 10px 12px; border: 1px solid transparent;
+    font-size: 14px; font-weight: 500;
+    transition: background .12s, border-color .12s;
+  }
+  #proto-nav-panel a.pn-link:hover { background: #f3f3f3; border-color: #cfc4c5; }
+  #proto-nav-panel a.pn-link.active {
+    background: #1a1c1c; color: #fff; border-color: #1a1c1c;
+  }
+  #proto-nav-panel a.pn-link .pn-num {
+    font-family: 'Work Sans', sans-serif; font-weight: 700;
+    font-size: 11px; opacity: .55; letter-spacing: .05em;
+  }
+  #proto-nav-panel a.pn-link.active .pn-num { opacity: 1; color: #d9591d; }
+
+  #proto-nav-panel footer {
+    margin-top: 14px; padding-top: 10px; border-top: 1px dashed #7e7576;
+    font-size: 11px; color: #4c4546; line-height: 1.5;
+  }
+
+  @media (max-width: 640px) {
+    #proto-nav-panel { width: calc(100vw - 32px); right: 16px; bottom: 88px; }
+    #proto-nav-fab { right: 16px; bottom: 16px; }
+  }
+</style>
+
+<button id="proto-nav-fab" type="button" aria-label="Toggle prototype navigator" title="Prototype Navigator">
+  <span aria-hidden="true">≡</span>
+</button>
+
+<aside id="proto-nav-panel" role="dialog" aria-label="Prototype navigator">
+  <header>
+    <h4>Prototype Navigator</h4>
+    <span class="pn-badge">v1.0</span>
+  </header>
+
+  <div class="pn-section">Desktop screens</div>
+  <ul>
+    <li><a class="pn-link" href="index.html"><span>Entry / Splash</span><span class="pn-num">01</span></a></li>
+    <li><a class="pn-link" href="home.html"><span>Home</span><span class="pn-num">02</span></a></li>
+    <li><a class="pn-link" href="about.html"><span>About</span><span class="pn-num">03</span></a></li>
+    <li><a class="pn-link" href="news.html"><span>News & Media</span><span class="pn-num">04</span></a></li>
+    <li><a class="pn-link" href="leadership.html"><span>Leadership</span><span class="pn-num">05</span></a></li>
+    <li><a class="pn-link active" href="members.html"><span>Members</span><span class="pn-num">06</span></a></li>
+    <li><a class="pn-link" href="get-involved.html"><span>Get Involved</span><span class="pn-num">07</span></a></li>
+    <li><a class="pn-link" href="resources.html"><span>Resources</span><span class="pn-num">08</span></a></li>
+  </ul>
+
+  <div class="pn-section">Mobile screens</div>
+  <ul>
+    <li><a class="pn-link" href="mobile.html"><span>Mobile Home</span><span class="pn-num">M1</span></a></li>
+  </ul>
+
+  <footer>
+    Click any screen to jump. Append <code>?nav=off</code> to any URL to hide this panel for clean screenshots.
+  </footer>
+</aside>
+
+<script>
+(function () {
+  // Optional kill-switch for clean client screenshots
+  var qs = new URLSearchParams(window.location.search);
+  if (qs.get('nav') === 'off') {
+    var s = document.getElementById('proto-nav-style');
+    var f = document.getElementById('proto-nav-fab');
+    var p = document.getElementById('proto-nav-panel');
+    if (s) s.remove();
+    if (f) f.remove();
+    if (p) p.remove();
+    return;
+  }
+
+  var fab = document.getElementById('proto-nav-fab');
+  var panel = document.getElementById('proto-nav-panel');
+  fab.addEventListener('click', function () { panel.classList.toggle('open'); });
+  // Close on outside click
+  document.addEventListener('click', function (e) {
+    if (!panel.classList.contains('open')) return;
+    if (panel.contains(e.target) || fab.contains(e.target)) return;
+    panel.classList.remove('open');
+  });
+  // ESC to close
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') panel.classList.remove('open');
+  });
+})();
+</script>
+
+</body></html>

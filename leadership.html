@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Political Portal — Leadership (Prototype)</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Work+Sans:wght@500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary": "#d9591d",
+                        "on-primary": "#ffffff",
+                        "error": "#ba1a1a",
+                        "on-primary-fixed-variant": "#474747",
+                        "on-secondary-fixed-variant": "#464747",
+                        "outline": "#7e7576",
+                        "primary-container": "#ffe8df",
+                        "secondary-container": "#e3e2e2",
+                        "tertiary-fixed": "#e2e2e2",
+                        "surface-container": "#eeeeee",
+                        "inverse-primary": "#ffb596",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-surface": "#2f3131",
+                        "on-error": "#ffffff",
+                        "on-tertiary-container": "#848484",
+                        "tertiary": "#000000",
+                        "surface-bright": "#f9f9f9",
+                        "on-secondary-container": "#646464",
+                        "surface-container-high": "#e8e8e8",
+                        "surface-variant": "#e2e2e2",
+                        "on-primary-container": "#3d1300",
+                        "on-primary-fixed": "#331200",
+                        "surface-container-low": "#f3f3f3",
+                        "secondary-fixed": "#e3e2e2",
+                        "on-secondary": "#ffffff",
+                        "surface-dim": "#dadada",
+                        "secondary-fixed-dim": "#c7c6c6",
+                        "tertiary-container": "#1b1b1b",
+                        "surface-container-highest": "#e2e2e2",
+                        "on-error-container": "#93000a",
+                        "on-surface-variant": "#4c4546",
+                        "tertiary-fixed-dim": "#c6c6c6",
+                        "on-tertiary-fixed-variant": "#474747",
+                        "secondary": "#5e5e5e",
+                        "surface-tint": "#d9591d",
+                        "error-container": "#ffdad6",
+                        "primary-fixed-dim": "#ffb596",
+                        "on-tertiary": "#ffffff",
+                        "background": "#f9f9f9",
+                        "on-background": "#1a1c1c",
+                        "primary-fixed": "#ffdbcb",
+                        "on-secondary-fixed": "#1b1c1c",
+                        "surface": "#f9f9f9",
+                        "on-tertiary-fixed": "#1b1b1b",
+                        "on-surface": "#1a1c1c",
+                        "outline-variant": "#cfc4c5",
+                        "inverse-on-surface": "#f1f1f1"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "unit": "8px",
+                        "lg": "24px",
+                        "gutter": "24px",
+                        "md": "16px",
+                        "margin": "32px",
+                        "sm": "8px",
+                        "xs": "4px",
+                        "xl": "48px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Inter"],
+                        "headline-lg": ["Work Sans"],
+                        "label-sm": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-md": ["Work Sans"],
+                        "headline-xl": ["Work Sans"],
+                        "marathi-body": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                        "label-sm": ["14px", {"lineHeight": "1.4", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "500"}],
+                        "headline-xl": ["40px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                        "marathi-body": ["16px", {"lineHeight": "1.8", "fontWeight": "400"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .placeholder-x {
+            background-image: linear-gradient(to top right, transparent calc(50% - 1px), #A3A3A3, transparent calc(50% + 1px)),
+                              linear-gradient(to bottom right, transparent calc(50% - 1px), #A3A3A3, transparent calc(50% + 1px));
+        }
+        .hard-shadow {
+            box-shadow: 4px 4px 0px 0px #d9591d;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md">
+<!-- TopNavBar -->
+<header class="bg-surface-container-lowest text-on-surface font-body-md docked full-width top-0 sticky border-b border-outline z-50">
+<div class="flex justify-between items-center w-full px-margin py-md">
+<div class="font-headline-md text-headline-md font-bold text-on-surface">Organization Platform</div>
+<nav class="hidden md:flex items-center gap-lg">
+<a class="text-secondary hover:bg-surface-container transition-colors cursor-pointer active:opacity-80 px-sm py-xs" href="home.html">Home</a>
+<a class="text-secondary hover:bg-surface-container transition-colors cursor-pointer active:opacity-80 px-sm py-xs" href="about.html">About</a>
+<a class="text-secondary hover:bg-surface-container transition-colors cursor-pointer active:opacity-80 px-sm py-xs" href="news.html">News</a>
+<a class="text-primary font-bold border-b-2 border-primary cursor-pointer active:opacity-80 px-sm py-xs" href="leadership.html">Leadership</a>
+<a class="text-secondary hover:bg-surface-container transition-colors cursor-pointer active:opacity-80 px-sm py-xs" href="members.html">Members</a>
+</nav>
+<div class="flex items-center gap-md">
+<button class="material-symbols-outlined text-on-surface hover:bg-surface-container p-xs transition-colors cursor-pointer">dark_mode</button>
+<button class="material-symbols-outlined text-on-surface hover:bg-surface-container p-xs transition-colors cursor-pointer">translate</button>
+<button class="border-2 border-primary text-primary px-lg py-sm font-bold hover:bg-primary-container transition-colors cursor-pointer active:opacity-80" onclick="window.location.href='get-involved.html';return false;" style="cursor:pointer">Join Now</button>
+</div>
+</div>
+</header>
+<div class="flex">
+<!-- SideNavBar -->
+<!-- Main Content -->
+<main class="flex-grow ml-0 px-margin py-xl">
+<!-- Page Header -->
+<section class="mb-xl max-w-5xl">
+<h1 class="font-headline-xl text-headline-xl mb-md">Leadership &amp; Heritage / नेतृत्व आणि वारसा</h1>
+<p class="font-body-lg text-body-lg text-secondary max-w-3xl">Exploring the legacy of our visionaries and the dynamic leadership shaping our future. | आपल्या दूरदृष्टी नेत्यांचा वारसा आणि भविष्याला आकार देणारे गतिमान नेतृत्व यांचा शोध.</p>
+</section>
+<!-- Foundation & Heritage Section (Bento Grid) -->
+<section class="mb-xl">
+<div class="flex items-center justify-between border-b-2 border-primary pb-sm mb-lg">
+<h2 class="font-headline-lg text-headline-lg uppercase tracking-tight text-primary">Heritage Pillars / वारसा स्तंभ</h2>
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">history_edu</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-lg">
+<!-- Balasaheb Thackeray Card -->
+<div class="md:col-span-8 border border-outline bg-surface-container-lowest overflow-hidden">
+<div class="grid grid-cols-1 md:grid-cols-2">
+<div class="aspect-square border-r border-outline placeholder-x bg-surface-container flex flex-col items-center justify-center">
+<span class="font-label-sm text-label-sm bg-surface-container-lowest px-md py-xs border border-outline">IMAGE 1:1 - BALASAHEB THACKERAY</span>
+</div>
+<div class="p-lg flex flex-col justify-between">
+<div>
+<h3 class="font-headline-md text-headline-md mb-xs">Balasaheb Thackeray</h3>
+<h4 class="font-label-sm text-label-sm text-primary mb-md">Founder &amp; Eternal Guide / संस्थापक आणि मार्गदर्शक</h4>
+<div class="flex gap-lg border-t border-outline-variant pt-md">
+<div class="w-1/2">
+<p class="font-body-md text-body-md italic text-on-surface-variant">The visionary who established the ideological foundation and unified the voice of the people.</p>
+</div>
+<div class="w-1/2 border-l border-outline-variant pl-lg">
+<p class="font-marathi-body text-marathi-body text-on-surface-variant">विचारधारेचा पाया रचणारे आणि जनतेचा आवाज बुलंद करणारे क्रांतिकारी नेतृत्व.</p>
+</div>
+</div>
+</div>
+<button class="mt-lg border-2 border-primary py-sm font-bold text-primary hover:bg-primary-container transition-colors uppercase text-sm">View Archive / संग्रहण पहा</button>
+</div>
+</div>
+</div>
+<!-- Anand Dighe Card -->
+<div class="md:col-span-4 border border-outline bg-surface-container-lowest flex flex-col">
+<div class="h-64 border-b border-outline placeholder-x bg-surface-container flex flex-col items-center justify-center">
+<span class="font-label-sm text-label-sm bg-surface-container-lowest px-md py-xs border border-outline">IMAGE 4:3 - ANAND DIGHE</span>
+</div>
+<div class="p-md flex-grow">
+<h3 class="font-headline-md text-headline-md mb-xs">Anand Dighe</h3>
+<h4 class="font-label-sm text-label-sm text-primary mb-sm">Dharmaveer / धर्मवीर</h4>
+<div class="grid grid-cols-1 gap-sm">
+<p class="font-body-md text-body-md text-on-surface-variant">A symbol of selfless service and grassroot organizational strength.</p>
+<p class="font-marathi-body text-marathi-body text-on-surface-variant border-t border-outline-variant pt-sm">निःस्वार्थ सेवा आणि तळागाळातील संघटनात्मक शक्तीचे प्रतीक.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Current National Leadership -->
+<section class="mb-xl">
+<div class="flex items-center justify-between border-b-2 border-primary pb-sm mb-lg">
+<h2 class="font-headline-lg text-headline-lg uppercase tracking-tight text-primary">Current Leadership / विद्यमान नेतृत्व</h2>
+<span class="material-symbols-outlined text-primary">person_check</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-lg items-start">
+<!-- Eknath Shinde Profile -->
+<div class="md:col-span-4 border-2 border-primary bg-surface-container-lowest hard-shadow">
+<div class="aspect-[4/5] border-b-2 border-primary placeholder-x bg-surface-container flex flex-col items-center justify-center">
+<span class="font-label-sm text-label-sm bg-surface-container-lowest px-md py-xs border border-primary">IMAGE - EKNATH SHINDE</span>
+</div>
+<div class="p-lg">
+<h3 class="font-headline-md text-headline-md mb-xs">Eknath Shinde</h3>
+<h4 class="font-label-sm text-label-sm text-primary font-bold mb-lg">Chief Minister &amp; Leader / मुख्यमंत्री आणि नेता</h4>
+<div class="space-y-md">
+<p class="font-body-md text-body-md">Leading the state with a vision of comprehensive development and public welfare.</p>
+<div class="bg-primary-container p-md border-l-4 border-primary italic">
+<p class="font-marathi-body text-marathi-body text-on-primary-container">सर्वसमावेशक विकास आणि लोककल्याणाच्या दृष्टीने राज्याचे नेतृत्व करत आहेत.</p>
+</div>
+</div>
+<div class="flex gap-md mt-lg">
+<button class="flex-grow border border-primary py-sm flex items-center justify-center gap-xs hover:bg-primary-container text-primary font-medium">
+<span class="material-symbols-outlined text-sm">mail</span> Contact
+                                </button>
+<button class="flex-grow border border-primary py-sm flex items-center justify-center gap-xs hover:bg-primary-container text-primary font-medium">
+<span class="material-symbols-outlined text-sm">share</span> Share
+                                </button>
+</div>
+</div>
+</div>
+<!-- Office Bearers & National Leaders List -->
+<div class="md:col-span-8">
+<div class="mb-lg">
+<div class="flex items-center gap-sm mb-md">
+<h3 class="font-headline-md text-headline-md">National Executive / राष्ट्रीय कार्यकारिणी</h3>
+<div class="h-[2px] bg-primary flex-grow opacity-30"></div>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-md">
+<!-- Leader Item 1 -->
+<div class="flex gap-md border border-outline p-md bg-surface-container-lowest items-center hover:border-primary transition-colors">
+<div class="w-16 h-16 border border-outline placeholder-x bg-surface-container"></div>
+<div class="flex-grow">
+<div class="flex justify-between items-start">
+<span class="font-bold">National Leader A</span>
+<span class="text-xs bg-primary-container text-primary px-xs py-1 border border-primary">MEMBER</span>
+</div>
+<p class="text-xs text-secondary mt-1">General Secretary / सरचिटणीस</p>
+</div>
+</div>
+<!-- Leader Item 2 -->
+<div class="flex gap-md border border-outline p-md bg-surface-container-lowest items-center hover:border-primary transition-colors">
+<div class="w-16 h-16 border border-outline placeholder-x bg-surface-container"></div>
+<div class="flex-grow">
+<div class="flex justify-between items-start">
+<span class="font-bold">National Leader B</span>
+<span class="text-xs bg-primary-container text-primary px-xs py-1 border border-primary">EXECUTIVE</span>
+</div>
+<p class="text-xs text-secondary mt-1">Spokesperson / प्रवक्ते</p>
+</div>
+</div>
+<!-- Leader Item 3 -->
+<div class="flex gap-md border border-outline p-md bg-surface-container-lowest items-center hover:border-primary transition-colors">
+<div class="w-16 h-16 border border-outline placeholder-x bg-surface-container"></div>
+<div class="flex-grow">
+<div class="flex justify-between items-start">
+<span class="font-bold">National Leader C</span>
+<span class="text-xs bg-primary-container text-primary px-xs py-1 border border-primary">MEMBER</span>
+</div>
+<p class="text-xs text-secondary mt-1">Treasurer / कोषाध्यक्ष</p>
+</div>
+</div>
+<!-- Leader Item 4 -->
+<div class="flex gap-md border border-outline p-md bg-surface-container-lowest items-center hover:border-primary transition-colors">
+<div class="w-16 h-16 border border-outline placeholder-x bg-surface-container"></div>
+<div class="flex-grow">
+<div class="flex justify-between items-start">
+<span class="font-bold">National Leader D</span>
+<span class="text-xs bg-primary-container text-primary px-xs py-1 border border-primary">ADVISOR</span>
+</div>
+<p class="text-xs text-secondary mt-1">Policy Head / धोरण प्रमुख</p>
+</div>
+</div>
+</div>
+</div>
+<div>
+<div class="flex items-center gap-sm mb-md">
+<h3 class="font-headline-md text-headline-md">Office Bearers / पदाधिकारी</h3>
+<div class="h-[2px] bg-primary flex-grow opacity-30"></div>
+</div>
+<div class="border border-outline overflow-hidden">
+<table class="w-full text-left">
+<thead class="bg-primary-container text-primary font-label-sm border-b border-primary">
+<tr>
+<th class="px-md py-sm">Name / नाव</th>
+<th class="px-md py-sm">Position / पद</th>
+<th class="px-md py-sm">Region / विभाग</th>
+</tr>
+</thead>
+<tbody class="bg-surface-container-lowest divide-y divide-outline-variant">
+<tr>
+<td class="px-md py-md font-medium">Shri. Ashok Patil</td>
+<td class="px-md py-md text-primary font-medium">State Coordinator / राज्य समन्वयक</td>
+<td class="px-md py-md">Konkan</td>
+</tr>
+<tr>
+<td class="px-md py-md font-medium">Shri. Sunil Deshmukh</td>
+<td class="px-md py-md text-primary font-medium">Zonal Head / विभाग प्रमुख</td>
+<td class="px-md py-md">Western Maharashtra</td>
+</tr>
+<tr>
+<td class="px-md py-md font-medium">Smt. Meena Shinde</td>
+<td class="px-md py-md text-primary font-medium">Women Wing Chief / महिला आघाडी प्रमुख</td>
+<td class="px-md py-md">State Level</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+</div>
+<!-- Footer -->
+<footer class="bg-surface-container-highest text-on-surface font-label-sm full-width border-t-2 border-primary">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-lg px-margin py-xl w-full">
+<div class="flex flex-col gap-md">
+<div class="font-headline-sm text-headline-sm font-black text-primary uppercase">Political Organization</div>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-xs">Building a stronger future through heritage and committed leadership. | वारसा आणि वचनबद्ध नेतृत्वाद्वारे मजबूत भविष्य घडवणे.</p>
+</div>
+<div class="grid grid-cols-2 gap-md">
+<div class="flex flex-col gap-sm">
+<span class="font-bold uppercase mb-xs text-primary">Explore</span>
+<a class="text-on-surface-variant hover:text-primary transition-colors cursor-pointer" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors cursor-pointer" href="members.html">Contact</a>
+</div>
+<div class="flex flex-col gap-sm">
+<span class="font-bold uppercase mb-xs text-primary">Action</span>
+<a class="text-on-surface-variant hover:text-primary transition-colors cursor-pointer underline decoration-primary decoration-2" href="get-involved.html">Volunteer</a>
+</div>
+</div>
+<div class="flex flex-col justify-between">
+<div class="flex gap-md mb-lg">
+<button class="w-10 h-10 border border-outline flex items-center justify-center hover:bg-primary-container hover:text-primary transition-colors">
+<span class="material-symbols-outlined">social_leaderboard</span>
+</button>
+<button class="w-10 h-10 border border-outline flex items-center justify-center hover:bg-primary-container hover:text-primary transition-colors">
+<span class="material-symbols-outlined">alternate_email</span>
+</button>
+<button class="w-10 h-10 border border-outline flex items-center justify-center hover:bg-primary-container hover:text-primary transition-colors">
+<span class="material-symbols-outlined">video_library</span>
+</button>
+</div>
+<p class="text-on-surface-variant">© 2024 Political Organization. All rights reserved.</p>
+</div>
+</div>
+</footer>
+
+<!-- =========================================================
+     PROTOTYPE NAVIGATOR — for client review only
+     Hide via ?nav=off  •  Toggle via the FAB at bottom-right
+     ========================================================= -->
+<style id="proto-nav-style">
+  #proto-nav-fab,
+  #proto-nav-panel { font-family: 'Inter', system-ui, sans-serif; }
+
+  #proto-nav-fab {
+    position: fixed; bottom: 24px; right: 24px; z-index: 99998;
+    width: 56px; height: 56px;
+    background: #d9591d; color: #fff;
+    border: 2px solid #000; border-radius: 0;
+    box-shadow: 4px 4px 0 0 #000;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; font-size: 22px; font-weight: 700;
+    transition: transform .12s ease, box-shadow .12s ease;
+  }
+  #proto-nav-fab:hover { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 0 #000; }
+  #proto-nav-fab:active { transform: translate(2px,2px); box-shadow: none; }
+
+  #proto-nav-panel {
+    position: fixed; bottom: 96px; right: 24px; z-index: 99999;
+    width: 320px; max-height: 80vh; overflow: auto;
+    background: #ffffff;
+    border: 2px solid #000; box-shadow: 6px 6px 0 0 #d9591d;
+    padding: 18px 18px 14px;
+    display: none;
+  }
+  #proto-nav-panel.open { display: block; }
+
+  #proto-nav-panel header {
+    display: flex; justify-content: space-between; align-items: baseline;
+    border-bottom: 1px dashed #7e7576; padding-bottom: 10px; margin-bottom: 14px;
+  }
+  #proto-nav-panel h4 {
+    margin: 0; font-family: 'Work Sans', sans-serif;
+    font-size: 14px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase;
+    color: #1a1c1c;
+  }
+  #proto-nav-panel .pn-badge {
+    font-size: 10px; font-weight: 600; letter-spacing: .08em;
+    background: #1a1c1c; color: #fff; padding: 2px 6px;
+  }
+
+  #proto-nav-panel .pn-section {
+    font-size: 10px; letter-spacing: .12em; text-transform: uppercase;
+    color: #7e7576; margin: 14px 0 6px;
+  }
+  #proto-nav-panel ul { list-style: none; margin: 0; padding: 0; }
+  #proto-nav-panel li { margin: 0; }
+  #proto-nav-panel a.pn-link {
+    display: flex; align-items: center; justify-content: space-between;
+    text-decoration: none; color: #1a1c1c;
+    padding: 10px 12px; border: 1px solid transparent;
+    font-size: 14px; font-weight: 500;
+    transition: background .12s, border-color .12s;
+  }
+  #proto-nav-panel a.pn-link:hover { background: #f3f3f3; border-color: #cfc4c5; }
+  #proto-nav-panel a.pn-link.active {
+    background: #1a1c1c; color: #fff; border-color: #1a1c1c;
+  }
+  #proto-nav-panel a.pn-link .pn-num {
+    font-family: 'Work Sans', sans-serif; font-weight: 700;
+    font-size: 11px; opacity: .55; letter-spacing: .05em;
+  }
+  #proto-nav-panel a.pn-link.active .pn-num { opacity: 1; color: #d9591d; }
+
+  #proto-nav-panel footer {
+    margin-top: 14px; padding-top: 10px; border-top: 1px dashed #7e7576;
+    font-size: 11px; color: #4c4546; line-height: 1.5;
+  }
+
+  @media (max-width: 640px) {
+    #proto-nav-panel { width: calc(100vw - 32px); right: 16px; bottom: 88px; }
+    #proto-nav-fab { right: 16px; bottom: 16px; }
+  }
+</style>
+
+<button id="proto-nav-fab" type="button" aria-label="Toggle prototype navigator" title="Prototype Navigator">
+  <span aria-hidden="true">≡</span>
+</button>
+
+<aside id="proto-nav-panel" role="dialog" aria-label="Prototype navigator">
+  <header>
+    <h4>Prototype Navigator</h4>
+    <span class="pn-badge">v1.0</span>
+  </header>
+
+  <div class="pn-section">Desktop screens</div>
+  <ul>
+    <li><a class="pn-link" href="index.html"><span>Entry / Splash</span><span class="pn-num">01</span></a></li>
+    <li><a class="pn-link" href="home.html"><span>Home</span><span class="pn-num">02</span></a></li>
+    <li><a class="pn-link" href="about.html"><span>About</span><span class="pn-num">03</span></a></li>
+    <li><a class="pn-link" href="news.html"><span>News & Media</span><span class="pn-num">04</span></a></li>
+    <li><a class="pn-link active" href="leadership.html"><span>Leadership</span><span class="pn-num">05</span></a></li>
+    <li><a class="pn-link" href="members.html"><span>Members</span><span class="pn-num">06</span></a></li>
+    <li><a class="pn-link" href="get-involved.html"><span>Get Involved</span><span class="pn-num">07</span></a></li>
+    <li><a class="pn-link" href="resources.html"><span>Resources</span><span class="pn-num">08</span></a></li>
+  </ul>
+
+  <div class="pn-section">Mobile screens</div>
+  <ul>
+    <li><a class="pn-link" href="mobile.html"><span>Mobile Home</span><span class="pn-num">M1</span></a></li>
+  </ul>
+
+  <footer>
+    Click any screen to jump. Append <code>?nav=off</code> to any URL to hide this panel for clean screenshots.
+  </footer>
+</aside>
+
+<script>
+(function () {
+  // Optional kill-switch for clean client screenshots
+  var qs = new URLSearchParams(window.location.search);
+  if (qs.get('nav') === 'off') {
+    var s = document.getElementById('proto-nav-style');
+    var f = document.getElementById('proto-nav-fab');
+    var p = document.getElementById('proto-nav-panel');
+    if (s) s.remove();
+    if (f) f.remove();
+    if (p) p.remove();
+    return;
+  }
+
+  var fab = document.getElementById('proto-nav-fab');
+  var panel = document.getElementById('proto-nav-panel');
+  fab.addEventListener('click', function () { panel.classList.toggle('open'); });
+  // Close on outside click
+  document.addEventListener('click', function (e) {
+    if (!panel.classList.contains('open')) return;
+    if (panel.contains(e.target) || fab.contains(e.target)) return;
+    panel.classList.remove('open');
+  });
+  // ESC to close
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') panel.classList.remove('open');
+  });
+})();
+</script>
+
+</body></html>

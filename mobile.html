@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Political Portal — Mobile (Prototype)</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Work+Sans:wght@500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary": "#d9591d",
+                    "error": "#ba1a1a",
+                    "on-primary-fixed-variant": "#474747",
+                    "on-secondary-fixed-variant": "#464747",
+                    "outline": "#7e7576",
+                    "primary-container": "#1b1b1b",
+                    "secondary-container": "#e3e2e2",
+                    "tertiary-fixed": "#e2e2e2",
+                    "surface-container": "#eeeeee",
+                    "inverse-primary": "#c6c6c6",
+                    "surface-container-lowest": "#ffffff",
+                    "inverse-surface": "#2f3131",
+                    "on-error": "#ffffff",
+                    "on-tertiary-container": "#848484",
+                    "tertiary": "#000000",
+                    "surface-bright": "#f9f9f9",
+                    "on-secondary-container": "#646464",
+                    "surface-container-high": "#e8e8e8",
+                    "surface-variant": "#e2e2e2",
+                    "on-primary-container": "#ffffff",
+                    "on-primary-fixed": "#1b1b1b",
+                    "surface-container-low": "#f3f3f3",
+                    "secondary-fixed": "#e3e2e2",
+                    "on-secondary": "#ffffff",
+                    "surface-dim": "#dadada",
+                    "secondary-fixed-dim": "#c7c6c6",
+                    "tertiary-container": "#1b1b1b",
+                    "surface-container-highest": "#e2e2e2",
+                    "on-error-container": "#93000a",
+                    "on-surface-variant": "#4c4546",
+                    "tertiary-fixed-dim": "#c6c6c6",
+                    "on-tertiary-fixed-variant": "#474747",
+                    "secondary": "#5e5e5e",
+                    "surface-tint": "#d9591d",
+                    "error-container": "#ffdad6",
+                    "primary-fixed-dim": "#c6c6c6",
+                    "on-tertiary": "#ffffff",
+                    "background": "#f9f9f9",
+                    "on-background": "#1a1c1c",
+                    "primary-fixed": "#e2e2e2",
+                    "on-secondary-fixed": "#1b1c1c",
+                    "on-primary": "#ffffff",
+                    "surface": "#f9f9f9",
+                    "on-tertiary-fixed": "#1b1b1b",
+                    "on-surface": "#1a1c1c",
+                    "outline-variant": "#cfc4c5",
+                    "inverse-on-surface": "#f1f1f1"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "unit": "8px",
+                    "lg": "24px",
+                    "gutter": "24px",
+                    "md": "16px",
+                    "margin": "32px",
+                    "sm": "8px",
+                    "xs": "4px",
+                    "xl": "48px"
+            },
+            "fontFamily": {
+                    "body-md": ["Inter"],
+                    "headline-lg": ["Work Sans"],
+                    "label-sm": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "headline-md": ["Work Sans"],
+                    "headline-xl": ["Work Sans"],
+                    "marathi-body": ["Inter"]
+            },
+            "fontSize": {
+                    "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                    "label-sm": ["14px", {"lineHeight": "1.4", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "500"}],
+                    "headline-xl": ["40px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                    "marathi-body": ["16px", {"lineHeight": "1.8", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+        }
+        .x-placeholder {
+            position: relative;
+            background: #F5F5F5;
+            border: 1px solid #A3A3A3;
+            overflow: hidden;
+        }
+        .x-placeholder::before, .x-placeholder::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 150%;
+            height: 1px;
+            background: #A3A3A3;
+        }
+        .x-placeholder::before { transform: translate(-50%, -50%) rotate(45deg); }
+        .x-placeholder::after { transform: translate(-50%, -50%) rotate(-45deg); }
+    </style>
+<style>
+        body {
+            min-height: max(884px, 100dvh);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md">
+<!-- TopNavBar -->
+<header class="bg-surface-container-lowest dark:bg-surface-container-lowest border-b border-outline dark:border-outline-variant docked full-width top-0 sticky z-50">
+<div class="flex justify-between items-center w-full px-margin py-md z-50">
+<div class="font-headline-md text-headline-md font-bold text-primary">
+                Organization Platform
+            </div>
+<div class="flex items-center gap-md">
+<button class="p-xs cursor-pointer active:opacity-80">
+<span class="material-symbols-outlined text-on-background" data-icon="translate">translate</span>
+</button>
+<button class="p-xs cursor-pointer active:opacity-80" onclick="document.getElementById('mobile-menu').classList.remove('hidden')">
+<span class="material-symbols-outlined text-on-background" data-icon="menu">menu</span>
+</button>
+</div>
+</div>
+</header>
+<main>
+<!-- Hero Section -->
+<section class="px-margin py-xl flex flex-col gap-lg bg-surface">
+<div class="x-placeholder aspect-[4/3] w-full flex items-center justify-center">
+<span class="bg-white px-md py-xs text-label-sm font-label-sm border border-outline z-10 uppercase tracking-widest">Hero Media 4:3</span>
+</div>
+<div class="flex flex-col gap-md">
+<h1 class="font-headline-xl text-headline-xl text-on-background leading-tight">Empowering Our Community / समुदायाचे सक्षमीकरण</h1>
+<p class="font-body-lg text-body-lg text-secondary">Join us in building a sustainable future for all. Together we can drive meaningful change through collective action and dedicated leadership.</p>
+<div class="flex flex-col gap-sm pt-md">
+<button class="w-full py-md bg-primary font-bold text-on-primary uppercase tracking-wider hover:opacity-90 transition-opacity" onclick="window.location.href='get-involved.html';return false;" style="cursor:pointer">Join Now</button>
+<button class="w-full py-md border-2 border-primary text-primary uppercase tracking-wider font-bold">Learn More</button>
+</div>
+</div>
+</section>
+<!-- Vision Section (Bento Inspired Asymmetric) -->
+<section class="px-margin py-xl bg-surface-container-low">
+<div class="flex flex-col gap-md mb-lg">
+<span class="text-label-sm font-label-sm text-primary uppercase border-l-2 border-primary pl-sm">Our Vision / आमची दृष्टी</span>
+<h2 class="font-headline-lg text-headline-lg text-on-background">A Unified Path Forward</h2>
+</div>
+<div class="grid grid-cols-1 gap-md">
+<!-- Large Card -->
+<div class="border border-outline bg-white p-md flex flex-col gap-md">
+<div class="x-placeholder aspect-video w-full"></div>
+<div>
+<h3 class="font-headline-md text-headline-md text-primary mb-sm">Integrity &amp; Honor / प्रामाणिकपणा आणि सन्मान</h3>
+<p class="font-body-md text-body-md text-secondary">Maintaining the highest standards in public service and community governance.</p>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-md">
+<div class="border border-outline bg-white p-md flex flex-col gap-sm">
+<span class="material-symbols-outlined text-primary text-xl" data-icon="diversity_3">diversity_3</span>
+<p class="font-label-sm text-label-sm text-on-background font-bold">Unity / एकता</p>
+</div>
+<div class="border border-outline bg-white p-md flex flex-col gap-sm">
+<span class="material-symbols-outlined text-primary text-xl" data-icon="trending_up">trending_up</span>
+<p class="font-label-sm text-label-sm text-on-background font-bold">Growth / वाढ</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Leadership Section (List Based) -->
+<section class="px-margin py-xl">
+<div class="flex flex-col gap-md mb-lg">
+<span class="text-label-sm font-label-sm text-primary uppercase border-l-2 border-primary pl-sm">Leadership / नेतृत्व</span>
+<h2 class="font-headline-lg text-headline-lg text-on-background">Voices of Change</h2>
+</div>
+<div class="flex flex-col border-y border-outline">
+<!-- Leader 1 -->
+<div class="py-lg flex items-center gap-md border-b border-outline last:border-b-0">
+<div class="x-placeholder h-16 w-16 shrink-0"></div>
+<div class="flex-grow grid grid-cols-2 gap-md items-center">
+<div class="font-body-md font-bold text-on-background">Dr. Amol Patil</div>
+<div class="font-marathi-body text-right text-secondary">डॉ. अमोल पाटील</div>
+</div>
+</div>
+<!-- Leader 2 -->
+<div class="py-lg flex items-center gap-md border-b border-outline last:border-b-0">
+<div class="x-placeholder h-16 w-16 shrink-0"></div>
+<div class="flex-grow grid grid-cols-2 gap-md items-center">
+<div class="font-body-md font-bold text-on-background">Sunita Deshmukh</div>
+<div class="font-marathi-body text-right text-secondary">सुनीता देशमुख</div>
+</div>
+</div>
+<!-- Leader 3 -->
+<div class="py-lg flex items-center gap-md border-b border-outline last:border-b-0">
+<div class="x-placeholder h-16 w-16 shrink-0"></div>
+<div class="flex-grow grid grid-cols-2 gap-md items-center">
+<div class="font-body-md font-bold text-on-background">Rajesh Shinde</div>
+<div class="font-marathi-body text-right text-secondary">राजेश शिंदे</div>
+</div>
+</div>
+</div>
+<button class="mt-lg w-full py-md border border-primary font-bold text-primary flex items-center justify-center gap-sm" onclick="window.location.href='news.html';return false;" style="cursor:pointer">
+                View All Leadership <span class="material-symbols-outlined" data-icon="chevron_right">chevron_right</span>
+</button>
+</section>
+<!-- News Section (Card-based Scroll) -->
+<section class="py-xl bg-surface-container">
+<div class="px-margin flex justify-between items-end mb-lg">
+<div class="flex flex-col gap-xs">
+<span class="text-label-sm font-label-sm text-primary uppercase">Latest Updates / ताज्या बातम्या</span>
+<h2 class="font-headline-lg text-headline-lg text-on-background">News &amp; Press</h2>
+</div>
+</div>
+<div class="flex flex-col gap-md px-margin">
+<!-- News Card 1 -->
+<div class="border border-outline bg-white overflow-hidden">
+<div class="x-placeholder aspect-video"></div>
+<div class="p-md flex flex-col gap-sm">
+<span class="text-label-sm font-label-sm text-secondary">March 24, 2024</span>
+<h4 class="font-headline-md text-headline-md text-primary">New Infrastructure Projects Launched in Rural Zones</h4>
+<div class="border-t border-outline-variant pt-sm mt-xs">
+<p class="font-marathi-body text-on-surface-variant">ग्रामीण भागात नवीन पायाभूत सुविधा प्रकल्पांचा शुभारंभ</p>
+</div>
+</div>
+</div>
+<!-- News Card 2 -->
+<div class="border border-outline bg-white overflow-hidden">
+<div class="p-md flex flex-col gap-sm">
+<span class="text-label-sm font-label-sm text-secondary">March 22, 2024</span>
+<h4 class="font-headline-md text-headline-md text-primary">Educational Grants for Higher Studies Announced</h4>
+<div class="border-t border-outline-variant pt-sm mt-xs">
+<p class="font-marathi-body text-on-surface-variant">उच्च शिक्षणासाठी शैक्षणिक अनुदानाची घोषणा</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-highest dark:bg-surface-container-highest border-t-4 border-primary full-width">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-lg px-margin py-xl w-full">
+<div class="flex flex-col gap-md">
+<div class="font-headline-sm text-headline-sm font-black text-primary">Organization Platform</div>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Working towards a better tomorrow for every citizen through transparency and accountability.</p>
+</div>
+<div class="flex flex-col gap-sm">
+<p class="font-label-sm text-label-sm font-bold text-primary uppercase">Quick Links</p>
+<div class="flex flex-col gap-xs">
+<a class="text-on-surface-variant hover:text-primary transition-colors text-label-sm font-label-sm underline" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors text-label-sm font-label-sm" href="#">Terms of Service</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors text-label-sm font-label-sm" href="get-involved.html">Volunteer</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors text-label-sm font-label-sm" href="members.html">Contact</a>
+</div>
+</div>
+<div class="flex flex-col gap-md">
+<p class="font-label-sm text-label-sm text-on-surface-variant">© 2024 Political Organization. All rights reserved.</p>
+<div class="flex gap-md">
+<span class="material-symbols-outlined text-primary cursor-pointer" data-icon="facebook">social_leaderboard</span>
+<span class="material-symbols-outlined text-primary cursor-pointer" data-icon="p_x">3p</span>
+<span class="material-symbols-outlined text-primary cursor-pointer" data-icon="linked_camera">linked_camera</span>
+</div>
+</div>
+</div>
+</footer>
+<!-- Fullscreen Menu -->
+<div class="hidden fixed inset-0 bg-surface-container-lowest z-[60] flex flex-col p-margin" id="mobile-menu">
+<div class="flex justify-between items-center mb-xl">
+<div class="font-headline-md text-headline-md font-bold text-primary">Menu</div>
+<button class="p-xs active:opacity-80" onclick="document.getElementById('mobile-menu').classList.add('hidden')">
+<span class="material-symbols-outlined text-on-background text-3xl" data-icon="close">close</span>
+</button>
+</div>
+<nav class="flex flex-col gap-lg">
+<div class="flex flex-col border-b border-primary pb-md">
+<a class="font-headline-md text-headline-md text-primary flex justify-between items-center font-bold" href="home.html">Home / मुख्यपृष्ठ <span class="material-symbols-outlined" data-icon="arrow_forward">arrow_forward</span></a>
+</div>
+<div class="flex flex-col border-b border-outline pb-md">
+<a class="font-headline-md text-headline-md text-on-background flex justify-between items-center" href="news.html">News / बातम्या <span class="material-symbols-outlined" data-icon="arrow_forward">arrow_forward</span></a>
+</div>
+<div class="flex flex-col border-b border-outline pb-md">
+<a class="font-headline-md text-headline-md text-on-background flex justify-between items-center" href="leadership.html">Leadership / नेतृत्व <span class="material-symbols-outlined" data-icon="arrow_forward">arrow_forward</span></a>
+</div>
+<div class="flex flex-col border-b border-outline pb-md">
+<a class="font-headline-md text-headline-md text-on-background flex justify-between items-center" href="news.html">Events / कार्यक्रम <span class="material-symbols-outlined" data-icon="arrow_forward">arrow_forward</span></a>
+</div>
+<div class="flex flex-col border-b border-outline pb-md">
+<a class="font-headline-md text-headline-md text-on-background flex justify-between items-center" href="members.html">Settings / सेटिंग्ज <span class="material-symbols-outlined" data-icon="arrow_forward">arrow_forward</span></a>
+</div>
+</nav>
+<div class="mt-auto">
+<button class="w-full py-lg bg-primary text-on-primary font-bold uppercase tracking-widest text-lg">Join the Movement</button>
+</div>
+</div>
+
+<!-- =========================================================
+     PROTOTYPE NAVIGATOR — for client review only
+     Hide via ?nav=off  •  Toggle via the FAB at bottom-right
+     ========================================================= -->
+<style id="proto-nav-style">
+  #proto-nav-fab,
+  #proto-nav-panel { font-family: 'Inter', system-ui, sans-serif; }
+
+  #proto-nav-fab {
+    position: fixed; bottom: 24px; right: 24px; z-index: 99998;
+    width: 56px; height: 56px;
+    background: #d9591d; color: #fff;
+    border: 2px solid #000; border-radius: 0;
+    box-shadow: 4px 4px 0 0 #000;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; font-size: 22px; font-weight: 700;
+    transition: transform .12s ease, box-shadow .12s ease;
+  }
+  #proto-nav-fab:hover { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 0 #000; }
+  #proto-nav-fab:active { transform: translate(2px,2px); box-shadow: none; }
+
+  #proto-nav-panel {
+    position: fixed; bottom: 96px; right: 24px; z-index: 99999;
+    width: 320px; max-height: 80vh; overflow: auto;
+    background: #ffffff;
+    border: 2px solid #000; box-shadow: 6px 6px 0 0 #d9591d;
+    padding: 18px 18px 14px;
+    display: none;
+  }
+  #proto-nav-panel.open { display: block; }
+
+  #proto-nav-panel header {
+    display: flex; justify-content: space-between; align-items: baseline;
+    border-bottom: 1px dashed #7e7576; padding-bottom: 10px; margin-bottom: 14px;
+  }
+  #proto-nav-panel h4 {
+    margin: 0; font-family: 'Work Sans', sans-serif;
+    font-size: 14px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase;
+    color: #1a1c1c;
+  }
+  #proto-nav-panel .pn-badge {
+    font-size: 10px; font-weight: 600; letter-spacing: .08em;
+    background: #1a1c1c; color: #fff; padding: 2px 6px;
+  }
+
+  #proto-nav-panel .pn-section {
+    font-size: 10px; letter-spacing: .12em; text-transform: uppercase;
+    color: #7e7576; margin: 14px 0 6px;
+  }
+  #proto-nav-panel ul { list-style: none; margin: 0; padding: 0; }
+  #proto-nav-panel li { margin: 0; }
+  #proto-nav-panel a.pn-link {
+    display: flex; align-items: center; justify-content: space-between;
+    text-decoration: none; color: #1a1c1c;
+    padding: 10px 12px; border: 1px solid transparent;
+    font-size: 14px; font-weight: 500;
+    transition: background .12s, border-color .12s;
+  }
+  #proto-nav-panel a.pn-link:hover { background: #f3f3f3; border-color: #cfc4c5; }
+  #proto-nav-panel a.pn-link.active {
+    background: #1a1c1c; color: #fff; border-color: #1a1c1c;
+  }
+  #proto-nav-panel a.pn-link .pn-num {
+    font-family: 'Work Sans', sans-serif; font-weight: 700;
+    font-size: 11px; opacity: .55; letter-spacing: .05em;
+  }
+  #proto-nav-panel a.pn-link.active .pn-num { opacity: 1; color: #d9591d; }
+
+  #proto-nav-panel footer {
+    margin-top: 14px; padding-top: 10px; border-top: 1px dashed #7e7576;
+    font-size: 11px; color: #4c4546; line-height: 1.5;
+  }
+
+  @media (max-width: 640px) {
+    #proto-nav-panel { width: calc(100vw - 32px); right: 16px; bottom: 88px; }
+    #proto-nav-fab { right: 16px; bottom: 16px; }
+  }
+</style>
+
+<button id="proto-nav-fab" type="button" aria-label="Toggle prototype navigator" title="Prototype Navigator">
+  <span aria-hidden="true">≡</span>
+</button>
+
+<aside id="proto-nav-panel" role="dialog" aria-label="Prototype navigator">
+  <header>
+    <h4>Prototype Navigator</h4>
+    <span class="pn-badge">v1.0</span>
+  </header>
+
+  <div class="pn-section">Desktop screens</div>
+  <ul>
+    <li><a class="pn-link" href="index.html"><span>Entry / Splash</span><span class="pn-num">01</span></a></li>
+    <li><a class="pn-link" href="home.html"><span>Home</span><span class="pn-num">02</span></a></li>
+    <li><a class="pn-link" href="about.html"><span>About</span><span class="pn-num">03</span></a></li>
+    <li><a class="pn-link" href="news.html"><span>News & Media</span><span class="pn-num">04</span></a></li>
+    <li><a class="pn-link" href="leadership.html"><span>Leadership</span><span class="pn-num">05</span></a></li>
+    <li><a class="pn-link" href="members.html"><span>Members</span><span class="pn-num">06</span></a></li>
+    <li><a class="pn-link" href="get-involved.html"><span>Get Involved</span><span class="pn-num">07</span></a></li>
+    <li><a class="pn-link" href="resources.html"><span>Resources</span><span class="pn-num">08</span></a></li>
+  </ul>
+
+  <div class="pn-section">Mobile screens</div>
+  <ul>
+    <li><a class="pn-link active" href="mobile.html"><span>Mobile Home</span><span class="pn-num">M1</span></a></li>
+  </ul>
+
+  <footer>
+    Click any screen to jump. Append <code>?nav=off</code> to any URL to hide this panel for clean screenshots.
+  </footer>
+</aside>
+
+<script>
+(function () {
+  // Optional kill-switch for clean client screenshots
+  var qs = new URLSearchParams(window.location.search);
+  if (qs.get('nav') === 'off') {
+    var s = document.getElementById('proto-nav-style');
+    var f = document.getElementById('proto-nav-fab');
+    var p = document.getElementById('proto-nav-panel');
+    if (s) s.remove();
+    if (f) f.remove();
+    if (p) p.remove();
+    return;
+  }
+
+  var fab = document.getElementById('proto-nav-fab');
+  var panel = document.getElementById('proto-nav-panel');
+  fab.addEventListener('click', function () { panel.classList.toggle('open'); });
+  // Close on outside click
+  document.addEventListener('click', function (e) {
+    if (!panel.classList.contains('open')) return;
+    if (panel.contains(e.target) || fab.contains(e.target)) return;
+    panel.classList.remove('open');
+  });
+  // ESC to close
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') panel.classList.remove('open');
+  });
+})();
+</script>
+
+</body></html>

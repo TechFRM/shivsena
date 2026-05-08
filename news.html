@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Work+Sans:wght@500;600;700;900&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48;
+        }
+        .placeholder-x {
+            background-image: linear-gradient(to top left, transparent calc(50% - 1px), #A3A3A3, transparent calc(50% + 1px)),
+                              linear-gradient(to top right, transparent calc(50% - 1px), #A3A3A3, transparent calc(50% + 1px));
+        }
+        .hard-shadow {
+            box-shadow: 4px 4px 0px 0px #000000;
+        }
+        .brand-shadow {
+            box-shadow: 4px 4px 0px 0px #d9591d;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "primary": "#000000",
+                      "brand-primary": "#d9591d",
+                      "error": "#ba1a1a",
+                      "on-primary-fixed-variant": "#474747",
+                      "on-secondary-fixed-variant": "#464747",
+                      "outline": "#7e7576",
+                      "primary-container": "#1b1b1b",
+                      "secondary-container": "#e3e2e2",
+                      "tertiary-fixed": "#e2e2e2",
+                      "surface-container": "#eeeeee",
+                      "inverse-primary": "#c6c6c6",
+                      "surface-container-lowest": "#ffffff",
+                      "inverse-surface": "#2f3131",
+                      "on-error": "#ffffff",
+                      "on-tertiary-container": "#848484",
+                      "tertiary": "#000000",
+                      "surface-bright": "#f9f9f9",
+                      "on-secondary-container": "#646464",
+                      "surface-container-high": "#e8e8e8",
+                      "surface-variant": "#e2e2e2",
+                      "on-primary-container": "#848484",
+                      "on-primary-fixed": "#1b1b1b",
+                      "surface-container-low": "#f3f3f3",
+                      "secondary-fixed": "#e3e2e2",
+                      "on-secondary": "#ffffff",
+                      "surface-dim": "#dadada",
+                      "secondary-fixed-dim": "#c7c6c6",
+                      "tertiary-container": "#1b1b1b",
+                      "surface-container-highest": "#e2e2e2",
+                      "on-error-container": "#93000a",
+                      "on-surface-variant": "#4c4546",
+                      "tertiary-fixed-dim": "#c6c6c6",
+                      "on-tertiary-fixed-variant": "#474747",
+                      "secondary": "#5e5e5e",
+                      "surface-tint": "#5e5e5e",
+                      "error-container": "#ffdad6",
+                      "primary-fixed-dim": "#c6c6c6",
+                      "on-tertiary": "#ffffff",
+                      "background": "#f9f9f9",
+                      "on-background": "#1a1c1c",
+                      "primary-fixed": "#e2e2e2",
+                      "on-secondary-fixed": "#1b1c1c",
+                      "on-primary": "#ffffff",
+                      "surface": "#f9f9f9",
+                      "on-tertiary-fixed": "#1b1b1b",
+                      "on-surface": "#1a1c1c",
+                      "outline-variant": "#cfc4c5",
+                      "inverse-on-surface": "#f1f1f1"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "unit": "8px",
+                      "lg": "24px",
+                      "gutter": "24px",
+                      "md": "16px",
+                      "margin": "32px",
+                      "sm": "8px",
+                      "xs": "4px",
+                      "xl": "48px"
+              },
+              "fontFamily": {
+                      "body-md": ["Inter"],
+                      "headline-lg": ["Work Sans"],
+                      "label-sm": ["Inter"],
+                      "body-lg": ["Inter"],
+                      "headline-md": ["Work Sans"],
+                      "headline-xl": ["Work Sans"],
+                      "marathi-body": ["Inter"]
+              },
+              "fontSize": {
+                      "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                      "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                      "label-sm": ["14px", {"lineHeight": "1.4", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                      "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                      "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "500"}],
+                      "headline-xl": ["40px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                      "marathi-body": ["16px", {"lineHeight": "1.8", "fontWeight": "400"}]
+              }
+            },
+          },
+        }
+      </script>
+</head>
+<body class="bg-background text-on-surface font-body-md min-h-screen">
+<!-- TopNavBar -->
+<header class="bg-surface-container-lowest dark:bg-surface-container-lowest border-b border-outline dark:border-outline-variant docked full-width top-0 sticky flex justify-between items-center w-full px-margin py-md z-50">
+<div class="font-headline-md text-headline-md font-bold text-primary dark:text-inverse-primary">Organization Platform</div>
+<nav class="hidden md:flex items-center gap-lg">
+<a class="text-secondary dark:text-secondary-fixed-dim font-body-md text-body-md hover:bg-surface-container dark:hover:bg-surface-container-high transition-colors cursor-pointer active:opacity-80" href="home.html">Home</a>
+<a class="text-secondary dark:text-secondary-fixed-dim font-body-md text-body-md hover:bg-surface-container dark:hover:bg-surface-container-high transition-colors cursor-pointer active:opacity-80" href="about.html">About</a>
+<a class="text-primary dark:text-inverse-primary font-bold border-b-2 border-brand-primary font-body-md text-body-md cursor-pointer" href="news.html">News</a>
+<a class="text-secondary dark:text-secondary-fixed-dim font-body-md text-body-md hover:bg-surface-container dark:hover:bg-surface-container-high transition-colors cursor-pointer active:opacity-80" href="leadership.html">Leadership</a>
+<a class="text-secondary dark:text-secondary-fixed-dim font-body-md text-body-md hover:bg-surface-container dark:hover:bg-surface-container-high transition-colors cursor-pointer active:opacity-80" href="members.html">Members</a>
+</nav>
+<div class="flex items-center gap-md">
+<div class="hidden md:flex items-center gap-sm">
+<span class="material-symbols-outlined text-secondary" data-icon="dark_mode">dark_mode</span>
+<span class="material-symbols-outlined text-secondary" data-icon="translate">translate</span>
+</div>
+<button class="border-2 border-primary px-md py-xs font-bold hover:bg-surface-container transition-all" onclick="window.location.href='get-involved.html';return false;" style="cursor:pointer">Join Now</button>
+</div>
+</header>
+<div class="flex">
+<!-- SideNavBar -->
+<!-- Main Content Canvas -->
+<main class="w-full px-margin py-xl">
+<!-- News Header -->
+<section class="mb-xl">
+<div class="flex flex-col md:flex-row justify-between items-end gap-lg border-b-2 border-primary pb-md">
+<div>
+<h1 class="font-headline-xl text-headline-xl mb-xs uppercase tracking-tight">News &amp; Media Hub</h1>
+<p class="font-body-lg text-body-lg text-secondary">Latest updates, official statements, and community stories.</p>
+</div>
+<div class="flex gap-sm">
+<button class="px-md py-xs border-2 border-brand-primary bg-brand-primary text-white font-bold text-label-sm">ALL</button>
+<button class="px-md py-xs border border-outline text-secondary hover:border-brand-primary hover:text-brand-primary transition-colors font-bold text-label-sm">PRESS RELEASES</button>
+<button class="px-md py-xs border border-outline text-secondary hover:border-brand-primary hover:text-brand-primary transition-colors font-bold text-label-sm">SPEECHES</button>
+</div>
+</div>
+</section>
+<!-- News Bento Grid -->
+<section class="grid grid-cols-12 gap-gutter mb-xl">
+<!-- Featured News (Large) -->
+<article class="col-span-12 md:col-span-8 border border-outline bg-surface-container-lowest p-md flex flex-col gap-md">
+<div class="aspect-video w-full border border-outline placeholder-x flex items-center justify-center">
+<span class="bg-surface-container-lowest px-md py-xs border border-brand-primary text-brand-primary font-bold font-label-sm">IMAGE 16:9</span>
+</div>
+<div class="border-t border-outline pt-md">
+<div class="flex justify-between font-label-sm text-secondary mb-xs">
+<span class="flex-1 text-brand-primary font-bold">FEATURED STORY / मुख्य बातमी</span>
+<span class="flex-1 text-right">OCT 24, 2024</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg mb-sm">Annual Leadership Summit: Shaping the Future of the Organization</h2>
+<p class="font-body-md text-body-md text-secondary">A comprehensive overview of the strategic milestones achieved this quarter and the roadmap for the upcoming fiscal year. Discussion focused on inclusivity and digital transformation.</p>
+<button class="mt-md font-bold underline text-brand-primary hover:opacity-80 transition-colors">Read Full Article</button>
+</div>
+</article>
+<!-- Side News List -->
+<div class="col-span-12 md:col-span-4 flex flex-col gap-gutter">
+<article class="border border-outline bg-surface-container-lowest p-md">
+<div class="aspect-[4/3] w-full border border-outline placeholder-x mb-md"></div>
+<div class="border-t border-outline pt-sm">
+<span class="font-label-sm text-brand-primary font-bold block mb-xs">PRESS RELEASE / प्रसिद्धीपत्रक</span>
+<h3 class="font-headline-md text-headline-md text-lg">New Membership Portal Launch</h3>
+</div>
+</article>
+<article class="border border-outline bg-surface-container-lowest p-md">
+<div class="border-t-4 border-brand-primary pt-sm">
+<span class="font-label-sm text-brand-primary font-bold block mb-xs">SPEECH / भाषण</span>
+<h3 class="font-headline-md text-headline-md text-lg">Keynote on Community Resilience</h3>
+<button class="mt-sm font-label-sm font-bold flex items-center gap-xs text-brand-primary">
+<span class="material-symbols-outlined text-[20px]" data-icon="play_circle">play_circle</span>
+                                WATCH NOW
+                            </button>
+</div>
+</article>
+</div>
+</section>
+<!-- Photo & Video Gallery -->
+<section class="mb-xl">
+<div class="flex items-center justify-between mb-lg">
+<h2 class="font-headline-md text-headline-md flex items-center gap-md">
+<span class="material-symbols-outlined text-brand-primary" data-icon="gallery_thumbnail">gallery_thumbnail</span>
+                        MEDIA GALLERY / माध्यम दालन
+                    </h2>
+<a class="font-label-sm font-bold underline hover:text-brand-primary" href="news.html">VIEW ALL GALLERY</a>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-gutter">
+<div class="aspect-square border border-outline bg-surface-container placeholder-x flex items-center justify-center relative">
+<span class="material-symbols-outlined absolute top-2 right-2 text-primary" data-icon="image">image</span>
+</div>
+<div class="aspect-square border border-outline bg-surface-container placeholder-x flex items-center justify-center relative">
+<span class="material-symbols-outlined absolute top-2 right-2 text-primary" data-icon="videocam">videocam</span>
+<span class="material-symbols-outlined text-[48px] text-primary/50" data-icon="play_arrow">play_arrow</span>
+</div>
+<div class="aspect-square border border-outline bg-surface-container placeholder-x flex items-center justify-center relative">
+<span class="material-symbols-outlined absolute top-2 right-2 text-primary" data-icon="image">image</span>
+</div>
+<div class="aspect-square border border-outline bg-surface-container placeholder-x flex items-center justify-center relative">
+<span class="material-symbols-outlined absolute top-2 right-2 text-primary" data-icon="videocam">videocam</span>
+<span class="material-symbols-outlined text-[48px] text-primary/50" data-icon="play_arrow">play_arrow</span>
+</div>
+</div>
+</section>
+<!-- Social Feed Preview & Press List -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<!-- Press Releases List -->
+<div class="md:col-span-2">
+<h2 class="font-headline-md text-headline-md mb-lg border-b border-outline pb-xs">LATEST UPDATES / अद्यतने</h2>
+<ul class="flex flex-col">
+<li class="py-md border-b border-outline-variant flex gap-md group cursor-pointer hover:bg-surface-container-low transition-colors">
+<div class="w-1/2 font-body-md group-hover:text-brand-primary transition-colors">Economic Policy Reform Announcement</div>
+<div class="w-1/2 font-marathi-body text-secondary">आर्थिक धोरण सुधारणा घोषणा</div>
+</li>
+<li class="py-md border-b border-outline-variant flex gap-md group cursor-pointer hover:bg-surface-container-low transition-colors">
+<div class="w-1/2 font-body-md group-hover:text-brand-primary transition-colors">Regional Outreach Program - Phase 2</div>
+<div class="w-1/2 font-marathi-body text-secondary">प्रादेशिक पोहोच कार्यक्रम - टप्पा २</div>
+</li>
+<li class="py-md border-b border-outline-variant flex gap-md group cursor-pointer hover:bg-surface-container-low transition-colors">
+<div class="w-1/2 font-body-md group-hover:text-brand-primary transition-colors">Environment Sustainability Pledge 2025</div>
+<div class="w-1/2 font-marathi-body text-secondary">पर्यावरण शाश्वतता प्रतिज्ञा २०२५</div>
+</li>
+</ul>
+</div>
+<!-- Integrated Social Feed -->
+<div class="bg-surface-container-highest p-md brand-shadow border-2 border-brand-primary">
+<div class="flex items-center gap-sm mb-md text-brand-primary">
+<span class="material-symbols-outlined" data-icon="rss_feed">rss_feed</span>
+<h2 class="font-label-sm font-bold uppercase">Social Feed</h2>
+</div>
+<div class="flex flex-col gap-md">
+<div class="bg-surface-container-lowest border border-outline p-sm flex flex-col gap-sm">
+<div class="flex items-center gap-sm">
+<div class="w-8 h-8 rounded-full border border-brand-primary placeholder-x"></div>
+<span class="font-label-sm font-bold text-brand-primary">@org_official</span>
+</div>
+<p class="text-label-sm">Proud to announce our latest initiative for youth empowerment. <span class="text-brand-primary">#Progress #Community</span></p>
+<div class="aspect-video border border-outline placeholder-x"></div>
+</div>
+<div class="bg-surface-container-lowest border border-brand-primary border-l-4 p-sm">
+<p class="text-label-sm italic">"The strength of the team is each individual member." - Leadership Quote</p>
+</div>
+</div>
+</div>
+</section>
+</main>
+</div>
+<!-- Footer -->
+<footer class="bg-surface-container-highest dark:bg-surface-container-highest border-t-2 border-primary dark:border-primary-fixed grid grid-cols-1 md:grid-cols-3 gap-lg px-margin py-xl w-full">
+<div class="flex flex-col gap-md">
+<div class="font-headline-sm text-headline-sm font-black text-primary">ORGANIZATION</div>
+<p class="font-label-sm text-on-surface-variant max-w-[300px]">Empowering the community through transparent governance and strategic growth.</p>
+</div>
+<div class="flex flex-col gap-sm">
+<h4 class="font-bold mb-xs underline">Quick Links</h4>
+<nav class="flex flex-col gap-xs font-label-sm text-label-sm">
+<a class="text-on-surface-variant hover:text-brand-primary transition-colors" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant hover:text-brand-primary transition-colors" href="#">Terms of Service</a>
+<a class="text-on-surface-variant hover:text-brand-primary transition-colors" href="get-involved.html">Volunteer</a>
+<a class="text-on-surface-variant hover:text-brand-primary transition-colors" href="members.html">Contact</a>
+</nav>
+</div>
+<div class="flex flex-col justify-between items-end">
+<div class="flex gap-md">
+<span class="material-symbols-outlined cursor-pointer hover:text-brand-primary" data-icon="share">share</span>
+<span class="material-symbols-outlined cursor-pointer hover:text-brand-primary" data-icon="mail">mail</span>
+<span class="material-symbols-outlined cursor-pointer hover:text-brand-primary" data-icon="info">info</span>
+</div>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-xl text-right">© 2024 Political Organization. All rights reserved.</p>
+</div>
+</footer>
+
+<!-- =========================================================
+     PROTOTYPE NAVIGATOR — for client review only
+     Hide via ?nav=off  •  Toggle via the FAB at bottom-right
+     ========================================================= -->
+<style id="proto-nav-style">
+  #proto-nav-fab,
+  #proto-nav-panel { font-family: 'Inter', system-ui, sans-serif; }
+
+  #proto-nav-fab {
+    position: fixed; bottom: 24px; right: 24px; z-index: 99998;
+    width: 56px; height: 56px;
+    background: #d9591d; color: #fff;
+    border: 2px solid #000; border-radius: 0;
+    box-shadow: 4px 4px 0 0 #000;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; font-size: 22px; font-weight: 700;
+    transition: transform .12s ease, box-shadow .12s ease;
+  }
+  #proto-nav-fab:hover { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 0 #000; }
+  #proto-nav-fab:active { transform: translate(2px,2px); box-shadow: none; }
+
+  #proto-nav-panel {
+    position: fixed; bottom: 96px; right: 24px; z-index: 99999;
+    width: 320px; max-height: 80vh; overflow: auto;
+    background: #ffffff;
+    border: 2px solid #000; box-shadow: 6px 6px 0 0 #d9591d;
+    padding: 18px 18px 14px;
+    display: none;
+  }
+  #proto-nav-panel.open { display: block; }
+
+  #proto-nav-panel header {
+    display: flex; justify-content: space-between; align-items: baseline;
+    border-bottom: 1px dashed #7e7576; padding-bottom: 10px; margin-bottom: 14px;
+  }
+  #proto-nav-panel h4 {
+    margin: 0; font-family: 'Work Sans', sans-serif;
+    font-size: 14px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase;
+    color: #1a1c1c;
+  }
+  #proto-nav-panel .pn-badge {
+    font-size: 10px; font-weight: 600; letter-spacing: .08em;
+    background: #1a1c1c; color: #fff; padding: 2px 6px;
+  }
+
+  #proto-nav-panel .pn-section {
+    font-size: 10px; letter-spacing: .12em; text-transform: uppercase;
+    color: #7e7576; margin: 14px 0 6px;
+  }
+  #proto-nav-panel ul { list-style: none; margin: 0; padding: 0; }
+  #proto-nav-panel li { margin: 0; }
+  #proto-nav-panel a.pn-link {
+    display: flex; align-items: center; justify-content: space-between;
+    text-decoration: none; color: #1a1c1c;
+    padding: 10px 12px; border: 1px solid transparent;
+    font-size: 14px; font-weight: 500;
+    transition: background .12s, border-color .12s;
+  }
+  #proto-nav-panel a.pn-link:hover { background: #f3f3f3; border-color: #cfc4c5; }
+  #proto-nav-panel a.pn-link.active {
+    background: #1a1c1c; color: #fff; border-color: #1a1c1c;
+  }
+  #proto-nav-panel a.pn-link .pn-num {
+    font-family: 'Work Sans', sans-serif; font-weight: 700;
+    font-size: 11px; opacity: .55; letter-spacing: .05em;
+  }
+  #proto-nav-panel a.pn-link.active .pn-num { opacity: 1; color: #d9591d; }
+
+  #proto-nav-panel footer {
+    margin-top: 14px; padding-top: 10px; border-top: 1px dashed #7e7576;
+    font-size: 11px; color: #4c4546; line-height: 1.5;
+  }
+
+  @media (max-width: 640px) {
+    #proto-nav-panel { width: calc(100vw - 32px); right: 16px; bottom: 88px; }
+    #proto-nav-fab { right: 16px; bottom: 16px; }
+  }
+</style>
+
+<button id="proto-nav-fab" type="button" aria-label="Toggle prototype navigator" title="Prototype Navigator">
+  <span aria-hidden="true">≡</span>
+</button>
+
+<aside id="proto-nav-panel" role="dialog" aria-label="Prototype navigator">
+  <header>
+    <h4>Prototype Navigator</h4>
+    <span class="pn-badge">v1.0</span>
+  </header>
+
+  <div class="pn-section">Desktop screens</div>
+  <ul>
+    <li><a class="pn-link" href="index.html"><span>Entry / Splash</span><span class="pn-num">01</span></a></li>
+    <li><a class="pn-link" href="home.html"><span>Home</span><span class="pn-num">02</span></a></li>
+    <li><a class="pn-link" href="about.html"><span>About</span><span class="pn-num">03</span></a></li>
+    <li><a class="pn-link active" href="news.html"><span>News & Media</span><span class="pn-num">04</span></a></li>
+    <li><a class="pn-link" href="leadership.html"><span>Leadership</span><span class="pn-num">05</span></a></li>
+    <li><a class="pn-link" href="members.html"><span>Members</span><span class="pn-num">06</span></a></li>
+    <li><a class="pn-link" href="get-involved.html"><span>Get Involved</span><span class="pn-num">07</span></a></li>
+    <li><a class="pn-link" href="resources.html"><span>Resources</span><span class="pn-num">08</span></a></li>
+  </ul>
+
+  <div class="pn-section">Mobile screens</div>
+  <ul>
+    <li><a class="pn-link" href="mobile.html"><span>Mobile Home</span><span class="pn-num">M1</span></a></li>
+  </ul>
+
+  <footer>
+    Click any screen to jump. Append <code>?nav=off</code> to any URL to hide this panel for clean screenshots.
+  </footer>
+</aside>
+
+<script>
+(function () {
+  // Optional kill-switch for clean client screenshots
+  var qs = new URLSearchParams(window.location.search);
+  if (qs.get('nav') === 'off') {
+    var s = document.getElementById('proto-nav-style');
+    var f = document.getElementById('proto-nav-fab');
+    var p = document.getElementById('proto-nav-panel');
+    if (s) s.remove();
+    if (f) f.remove();
+    if (p) p.remove();
+    return;
+  }
+
+  var fab = document.getElementById('proto-nav-fab');
+  var panel = document.getElementById('proto-nav-panel');
+  fab.addEventListener('click', function () { panel.classList.toggle('open'); });
+  // Close on outside click
+  document.addEventListener('click', function (e) {
+    if (!panel.classList.contains('open')) return;
+    if (panel.contains(e.target) || fab.contains(e.target)) return;
+    panel.classList.remove('open');
+  });
+  // ESC to close
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') panel.classList.remove('open');
+  });
+})();
+</script>
+
+</body></html>
